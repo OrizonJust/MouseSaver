@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.laverno'
+version '1.0.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${junit}"
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junit}"
+}
+
+test {
+    useJUnitPlatform()
+}
