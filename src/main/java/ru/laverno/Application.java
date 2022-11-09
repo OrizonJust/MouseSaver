@@ -1,21 +1,40 @@
 package ru.laverno;
 
+import javax.swing.*;
 import java.awt.*;
+
+import static java.lang.Math.tan;
+import static java.lang.Math.toRadians;
 
 public class Application {
 
+    static boolean exit = false;
+
     public static void main(String[] args) {
+        printUI();
+
+        double degree = Double.parseDouble(args[0]);
+        double tan = tan(toRadians(degree));
+
+        Coordinate c = new Coordinate.CoordinateBuilder(tan, 1 / tan).build();
         try {
             Robot robot = new Robot();
-            Coordinate c = new Coordinate(0, 0, true, true);
-            boolean flag = true;
-            while (flag) {
+            while (!exit) {
                 robot.mouseMove(c.calculateX(), c.calculateY());
-                flag = c.isFinish();
+                exit = c.isFinish();
                 Thread.sleep(2);
             }
         } catch (Exception ex) {
             throw new RuntimeException();
+        } finally {
+            System.out.println(c.getCounterChangeDirection());
         }
+    }
+
+    private static void printUI() {
+        JFrame frame = new JFrame();
+        frame.setUndecorated(true);
+        frame.setVisible(true);
+        frame.addKeyListener(new KeyListenerToClose());
     }
 }

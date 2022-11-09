@@ -11,8 +11,17 @@ repositories {
 }
 
 dependencies {
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombok}"
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombok}"
+
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${junit}"
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junit}"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.laverno.Application'
+    }
 }
 
 test {
