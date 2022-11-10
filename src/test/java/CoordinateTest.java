@@ -17,13 +17,13 @@ public class CoordinateTest {
         assertEquals(1, c.calculateY());
     }
 
-//    @Test
-//    public void isFinishTest() {
-//        Coordinate c = new Coordinate.CoordinateBuilder(1, 1).build();
-//        assertTrue(c.isFinish());
-//        c = new Coordinate.CoordinateBuilder(1, 1).setX(1920).setY(1080).build();
-//        assertFalse(c.isFinish());
-//    }
+    @Test
+    public void isFinishTest() {
+        Coordinate c = new Coordinate.CoordinateBuilder(1, 1).build();
+        assertFalse(c.isFinish());
+        c = new Coordinate.CoordinateBuilder(1, 1).setX(1920).setY(1080).build();
+        assertTrue(c.isFinish());
+    }
 
     @Test
     public void changeDirection() {

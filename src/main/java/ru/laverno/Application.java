@@ -12,8 +12,7 @@ public class Application {
 
     public static void main(String[] args) {
         printUI();
-
-        double degree = Double.parseDouble(args[0]);
+        double degree = args.length == 0 ? 45 : Double.parseDouble(args[0]);
         double tan = tan(toRadians(degree));
 
         Coordinate c = new Coordinate.CoordinateBuilder(tan, 1 / tan).build();
@@ -22,7 +21,6 @@ public class Application {
             while (!exit) {
                 robot.mouseMove(c.calculateX(), c.calculateY());
                 exit = c.isFinish();
-                Thread.sleep(2);
             }
         } catch (Exception ex) {
             throw new RuntimeException();
